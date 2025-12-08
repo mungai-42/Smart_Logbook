@@ -1,0 +1,89 @@
+{% extends 'maintenance/base.html' %}
+
+{% block content %}
+<div class="flex justify-center items-center min-h-[80vh]">
+    <div class="glass-card p-8 md:p-10 rounded-2xl w-full max-w-2xl">
+        <h2 class="text-3xl font-bold mb-2 text-white">Report an Issue</h2>
+        <p class="text-gray-400 mb-8">Found a problem? Let us know so we can fix it.</p>
+
+        <form method="post" enctype="multipart/form-data" class="space-y-6">
+            {% csrf_token %}
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Category -->
+                <div>
+                    <label class="block text-gray-300 text-sm font-semibold mb-2" for="id_category">Category</label>
+                    <div class="relative">
+                        {{ form.category }}
+                    </div>
+                </div>
+
+                <!-- Title -->
+                <div>
+                    <label class="block text-gray-300 text-sm font-semibold mb-2" for="id_title">Issue Title</label>
+                    {{ form.title }}
+                </div>
+            </div>
+
+            <!-- Description -->
+            <div>
+                <label class="block text-gray-300 text-sm font-semibold mb-2" for="id_description">Description
+                    details</label>
+                {{ form.description }}
+            </div>
+
+            <!-- Photo -->
+            <div>
+                <label class="block text-gray-300 text-sm font-semibold mb-2">Upload Photo</label>
+                <div
+                    class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-600 border-dashed rounded-xl hover:border-brand-500 hover:bg-white/5 transition-all">
+                    <div class="space-y-1 text-center">
+                        <svg class="mx-auto h-12 w-12 text-gray-400" stroke="currentColor" fill="none"
+                            viewBox="0 0 48 48" aria-hidden="true">
+                            <path
+                                d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg>
+                        <div class="text-gray-400">
+                            {{ form.photo }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Hacking Django widgets styles with JS because manual rendering is verbose -->
+            <script>
+                // Style inputs
+                const inputs = document.querySelectorAll('input[type="text"], textarea, select');
+                inputs.forEach(input => {
+                    input.className = "w-full bg-white/10 border border-gray-600 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all";
+                });
+
+                // Fix for select options text color (browser default dropdowns are usually white)
+                const selects = document.querySelectorAll('select');
+                selects.forEach(select => {
+                    const options = select.querySelectorAll('option');
+                    options.forEach(option => {
+                        option.style.color = 'black';
+                    });
+                });
+
+                // Style file input specific
+                const fileInput = document.querySelector('input[type="file"]');
+                if (fileInput) fileInput.className = "text-sm text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-brand-600 file:text-white hover:file:bg-brand-500 cursor-pointer";
+            </script>
+
+            <div class="flex items-center justify-end space-x-4 pt-4 border-t border-gray-700/50">
+                <a href="{% url 'dashboard' %}" class="text-gray-400 hover:text-white font-medium transition-colors">
+                    Cancel
+                </a>
+                <button
+                    class="bg-gradient-to-r from-brand-600 to-accent-600 hover:from-brand-500 hover:to-accent-500 text-white font-bold py-3 px-8 rounded-xl shadow-lg shadow-brand-500/30 transform hover:-translate-y-0.5 transition-all duration-200"
+                    type="submit">
+                    Submit Report
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

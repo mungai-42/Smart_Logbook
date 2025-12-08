@@ -1,0 +1,37 @@
+{% extends 'maintenance/base.html' %}
+
+{% block content %}
+<div class="flex justify-center items-center min-h-[80vh]">
+    <div class="glass-card p-10 rounded-2xl w-full max-w-md relative overflow-hidden">
+        <!-- Decoration -->
+        <div class="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-brand-500 to-accent-500"></div>
+
+        <h2 class="text-3xl font-bold mb-8 text-center text-white">Welcome Back</h2>
+        <form method="post" class="space-y-6">
+            {% csrf_token %}
+            <div>
+                <label class="block text-gray-300 text-sm font-semibold mb-2" for="id_username">Username</label>
+                <input type="text" name="username"
+                    class="w-full bg-white/10 border border-gray-600 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all"
+                    required id="id_username" placeholder="Enter your username">
+            </div>
+            <div>
+                <label class="block text-gray-300 text-sm font-semibold mb-2" for="id_password">Password</label>
+                <input type="password" name="password"
+                    class="w-full bg-white/10 border border-gray-600 rounded-lg px-4 py-3 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-brand-500 focus:border-transparent transition-all"
+                    required id="id_password" placeholder="••••••••">
+            </div>
+
+            <button
+                class="w-full bg-gradient-to-r from-brand-600 to-accent-600 hover:from-brand-500 hover:to-accent-500 text-white font-bold py-3 px-4 rounded-lg shadow-lg shadow-brand-500/30 transform hover:-translate-y-0.5 transition-all duration-200"
+                type="submit">
+                Sign In
+            </button>
+        </form>
+        <p class="text-center text-gray-400 text-sm mt-8">
+            New here? <a href="{% url 'register' %}"
+                class="text-brand-400 hover:text-brand-300 font-medium transition-colors">Create an account</a>
+        </p>
+    </div>
+</div>
+{% endblock %}
