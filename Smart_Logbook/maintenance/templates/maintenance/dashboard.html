@@ -70,8 +70,13 @@
             </div>
 
             <div class="p-6">
-                <div class="mb-3">
+                <div class="mb-3 flex items-center justify-between">
                     <span class="text-xs font-bold text-brand-400 uppercase tracking-wider">{{ issue.category }}</span>
+                    {% if issue.room_number %}
+                    <span
+                        class="text-xs font-medium text-gray-400 bg-white/5 px-2 py-1 rounded-md border border-white/5">{{
+                        issue.room_number }}</span>
+                    {% endif %}
                 </div>
 
                 <h3 class="text-xl font-bold mb-2 text-white group-hover:text-brand-400 transition-colors truncate">

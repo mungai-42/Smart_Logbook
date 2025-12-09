@@ -26,6 +26,7 @@ class MaintenanceRequest(models.Model):
     ]
 
     tenant = models.ForeignKey(User, on_delete=models.CASCADE)
+    room_number = models.CharField(max_length=50, default='unspecified', help_text="Room, House, or Unit Number (e.g., 'Room 12')")
     category = models.CharField(max_length=20, choices=CATEGORY_CHOICES)
     title = models.CharField(max_length=200)
     description = models.TextField()

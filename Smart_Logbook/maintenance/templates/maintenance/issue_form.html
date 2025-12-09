@@ -18,8 +18,15 @@
                     </div>
                 </div>
 
-                <!-- Title -->
+                <!-- Room Number -->
                 <div>
+                    <label class="block text-gray-300 text-sm font-semibold mb-2" for="id_room_number">Room / House
+                        Number</label>
+                    {{ form.room_number }}
+                </div>
+
+                <!-- Title -->
+                <div class="md:col-span-2">
                     <label class="block text-gray-300 text-sm font-semibold mb-2" for="id_title">Issue Title</label>
                     {{ form.title }}
                 </div>
