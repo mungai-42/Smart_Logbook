@@ -460,5 +460,30 @@
         font-size: 14px;
         color: var(--text-muted) !important;
     }
+
+    /* Fix Dropdown Options in Dark Mode */
+    option {
+        background-color: var(--bg-deep);
+        color: white;
+    }
+
+    /* FORCE TABLE TEXT VISIBILITY */
+    .results table,
+    .results th,
+    .results td,
+    .results td a,
+    .results th a {
+        color: white !important;
+    }
+
+    .row1,
+    .row2 {
+        background-color: rgba(255, 255, 255, 0.05) !important;
+    }
+
+    .row1:hover,
+    .row2:hover {
+        background-color: rgba(255, 255, 255, 0.1) !important;
+    }
 </style>
 {% endblock %}

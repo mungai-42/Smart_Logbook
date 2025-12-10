@@ -1,8 +1,18 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.views import LoginView
 from .forms import UserRegisterForm, MaintenanceRequestForm
 from .models import MaintenanceRequest
+
+class CustomLoginView(LoginView):
+    template_name = 'maintenance/login.html'
+    
+    def get_success_url(self):
+        if self.request.user.is_superuser:
+            return '/admin/'
+        return super().get_success_url()
+
 
 def home(request):
     return render(request, 'maintenance/home.html')
